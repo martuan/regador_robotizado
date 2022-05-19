@@ -39,7 +39,8 @@ EL sketch de Fritzing se encuentra en la carpeta del mismo nombre, dentro de /do
 
 Para ver el [pinout de la ESP32](/docs/ESP32.md)
 
-| Pin Componente | Shield | Pin Arduino |
+SHIELD/ARDUINO
+| Componente | Pin Shield | Pin Arduino |
 | -------------- | --------- | --------- |
 | IN 1 Relé | SpindleDir | 13 |
 | IN 2 | SpindleEna | 12 |
@@ -47,6 +48,29 @@ Para ver el [pinout de la ESP32](/docs/ESP32.md)
 | PCB final de carrera Salida 2 | Z- y GND | 10 y GND |
 | Botón  | Y- y GND | 10 y GND |
 | Sensor H | Coolant Enable | A3 |
+
+PCB OPTO
+| Componente | Pin PCB |
+| -------------- | --------- |
+| Final de carrera X | Entrada 1 senal |
+| Z- Shield | Salida 1 senal |
+| Final de carrera Y | Entrada 2 senal|
+| X- Shield | Salida 2 senal |
+| Sensor | Salida 5V 2  |
+| Fuente | Entrada 12 |
+
+DB9
+| PIN | Componente |
+| -------------- | --------- |
+| 1 | PaP Negro |
+| 2 | PaP Verde |
+| 3 | PaP Rojo|
+| 4 | PaP Azul |
+| 5 | Final de carrera  |
+| 6 | Sensor - |
+| 7 | Sensor + |
+| 8 | Senal sensor |
+| 9 | Final de carrera |
 
 ![](/img/handtemp-sketch.png)
 
