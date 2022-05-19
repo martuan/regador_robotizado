@@ -39,6 +39,15 @@ EL sketch de Fritzing se encuentra en la carpeta del mismo nombre, dentro de /do
 
 Para ver el [pinout de la ESP32](/docs/ESP32.md)
 
+| Pin Componente | Shield | Pin Arduino |
+| -------------- | --------- | --------- |
+| IN 1 Relé | SpindleDir | 13 |
+| IN 2 | SpindleEna | 12 |
+| PCB final de carrera Salida 1 | X- y GND | 9 y GND |
+| PCB final de carrera Salida 2 | Z- y GND | 10 y GND |
+| Botón  | Y- y GND | 10 y GND |
+| Sensor H | Coolant Enable | A3 |
+
 ![](/img/handtemp-sketch.png)
 
 > NOTA: El componente MLX-90614 no estaba disponible en Fritzing, por lo que se lo reemplazó por otro con pines para I2C, donde la disposición de los mismos es igual.
