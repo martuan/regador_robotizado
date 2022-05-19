@@ -72,6 +72,16 @@ DB9
 | 8 | Senal sensor |
 | 9 | Final de carrera |
 
+PINES LIBRES
+| PIN Arduino| Pin Shield |
+| -------------- | --------- |
+| 2 | Step pulse Y-Axis |
+| 6 | Direction Y-Axis |
+| 3 | Spindle direction |
+| 13 | PaP Azul |
+| A0 | Reser/Abort  |
+| A1 | Feed Hold |
+
 ![](/img/handtemp-sketch.png)
 
 > NOTA: El componente MLX-90614 no estaba disponible en Fritzing, por lo que se lo reemplazó por otro con pines para I2C, donde la disposición de los mismos es igual.
