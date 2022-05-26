@@ -24,11 +24,11 @@
 #define DELAY_MOVIMIENTO_X 600          //Delay entre pasos para movimiento del eje x
 #define DELAY_MOVIMIENTO_Z 600          //Delay entre pasos para movimiento del eje z
 
-#define HUMEDAD_SECO 520                //Valores de referencia para la medición del porcentaje de humedad           
-#define HUMEDAD_MOJADO 260
+#define HUMEDAD_SECO 504                //Valores de referencia para la medición del porcentaje de humedad           
+#define HUMEDAD_MOJADO 247
 #define CANTIDAD_MEDICIONES 8
 #define PORCENTAJE_RIEGO 20             //Porcentaje de humedad para el cual se activa la bomba
-#define DELAY_BOMBA 500                 //Tiempo de activación de la bomba en ms
+#define DELAY_BOMBA_MAX 3000            //Tiempo maximo de activación de la bomba en ms
 
 #define BOTON_ENCENDIDO 0               //Estado del botón cuando está presionado
 #define BOMBA_ENCENDIDO 1               //Estado de la bomba cuando está activada
@@ -73,7 +73,7 @@ void setup()                                //Función de seteo, el programa pas
 void loop()                                         //Función principal, void significa que no devuelve valores
 {
   go_home();                                        //Voy a la posición de home en los dos ejes
-  if(digitalRead(PIN_BOTON) == BOTON_ENCENDIDO)     //Leo estado del pin y pregunro si el boton esta apretado. (funciona con lógica inversa)
+  if(digitalRead(PIN_BOTON) == BOTON_ENCENDIDO)     //Leo estado del pin y pregunto si el boton esta apretado. (funciona con lógica inversa)
   { 
     delay(DELAY_DEBOUNCE_BOTON);                  
     digitalWrite(PIN_PAP_ENA,LOW);                  //Habilito el driver
@@ -94,7 +94,7 @@ void go_home()
   int detecteX = 0, detecteZ = 0;                    //Defino flags para indicar que los endstop están activos
 
   digitalWrite(PIN_PAP_ENA, LOW);
-  digitalWrite(PIN_PAP_X_DIR, !PAP_X_DIR_ADELANTE);
+  digitalWrite(PIN_PAP_X_DIR, !PAP_X_DIR_ADELANTE);  //! cambia estado, si era 0 pasa a 1, si era 1 pasa a 0
   digitalWrite(PIN_PAP_Z_DIR, !PAP_Z_DIR_ADELANTE);
 
   do 
@@ -196,21 +196,24 @@ void mover_eje_z()
 
 void medicion_y_riego()
 {
-  int hum_porcentaje = 0, valor_adc, valor_humedad;
+  int hum_porcentaje = 0, valor_adc, valor_humedad, tiempo_apertura;
+
+  // podriamos no calcular porcentaje y trabajar solo con mapeo de tiempo de apertura?
   for(int z = 0; z < CANTIDAD_MEDICIONES; z++)                                  //Realizamos varias mediciones y efectuamos un promedio del porcentaje de humedad
-  {
+  { 
     valor_adc = analogRead(PIN_SENSOR);                                         //Hacemos la lectura analógica y la guardamos en una variable
     valor_humedad = map(valor_adc, HUMEDAD_SECO, HUMEDAD_MOJADO, 0, 100);       //Mapeamos el valor medido para obtener un porcentaje
     if (valor_humedad > 100) valor_humedad = 100;
     if (valor_humedad < 0) valor_humedad = 0;
-    hum_porcentaje += valor_humedad;
+    hum_porcentaje += valor_humedad;                                            //NO es porcentaje todavia
   }
-  hum_porcentaje = hum_porcentaje/CANTIDAD_MEDICIONES;
+  hum_porcentaje = hum_porcentaje/CANTIDAD_MEDICIONES;                          //Calculamos porcentaje
 
   if(hum_porcentaje < PORCENTAJE_RIEGO)                                         //Si el porcentaje de humedad es menor al límite preestablecido
   {
-    digitalWrite(PIN_BOMBA,BOMBA_ENCENDIDO);                                    //Activa la bomba durante un tiempo preestablecido
-    delay(DELAY_BOMBA);
+    digitalWrite(PIN_BOMBA,BOMBA_ENCENDIDO);                                    //Activa la bomba durante un tiempo
+    tiempo_apertura = map(hum_porcentaje, 100, 0, 0, DELAY_BOMBA_MAX);          //Mapeamos el tiempo de apertura en funcion de valores max (vaso de agua) y min (aire) de porcentaje de humedad
+    delay(tiempo_apertura);
     digitalWrite(PIN_BOMBA,!BOMBA_ENCENDIDO);
   }
 }
