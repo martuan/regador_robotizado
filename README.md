@@ -70,12 +70,13 @@ Fecha de lanzamiento: 18/11/2020
 
 ### Características
 * Posee método de watchDog para resetear el microcontrolador si este queda bloqueado.
-* Descarta temperaturas fuera de un rango determinado.
-* Establece conexión wifi para enviar datos utilizando protocolo mqtt.
+* Descarta % de humedad fuera de un rango determinado.
+* Establece conexión wifi con la ESP 32 para enviar datos utilizando protocolo mqtt.
 * Posee dos modos de funcionamiento: Modo local y Modo Red (seleccionables mediante switch externo).
 * Obtiene la fecha y hora (timeStamp) desde un servidor de reloj global.
 * En caso de perder la conexión wifi/mqtt automáticamente se pone en modo local. Al reestablecerse la conexión, vuelve al modo red.
-* Permite cambiar ciertos parámetros por puerto serie o bluetooth (utilizando serial port)
+* Permite cambiar ciertos parámetros por bluetooth
+* Permite cambiar ciertos parámetros por wifi (utilizando serial port)
 * Almacena una cantidad de lecturas en memoria interna EEPROM.
 * Mide con 1 o 2 o 3 sensores IR y promedia las lecturas.
 * Permite consultar las últimas lecturas.
