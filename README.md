@@ -9,7 +9,6 @@ Repositorio técnico del proyecto, con toda la información referida al hardware
 ## Conexionado
 EL sketch de Fritzing se encuentra en la carpeta del mismo nombre, dentro de /docs. Ahí también hay una carpeta *parts* cuyo contenido son componentes que se deben agregar manualmente al proyecto. Éstos se copian dentro de la carpeta que Fritzing nos asigna para guardar componentes, generalmente es *Documentos/Fritzing/parts*.
 
-Para ver el [pinout de la ESP32](/docs/ESP32.md)
 
 PINES ARDUINO
 
@@ -106,10 +105,6 @@ Para compilar y ejecutar el firmware en la ESP32 debemos seguir los siguientes p
 
 * Instalar las librerías requeridas por el proyecto. Éstas son:
 
-	* [Adafruit Bus IO](https://github.com/adafruit/Adafruit_BusIO)
-	* [Adafruit SH1106](https://github.com/wonho-maker/Adafruit_SH1106)
-	* [Adafruit GFX Library](https://github.com/adafruit/Adafruit-GFX-Library)
-	* [New Ping](https://bitbucket.org/teckel12/arduino-new-ping/downloads/NewPing_v1.9.1.zip)
 	* [Arduino OTA](https://github.com/jandrassy/ArduinoOTA)
 	* [PubSubClient](https://github.com/knolleary/pubsubclient/)
 	* [Adafruit MLX90614](https://github.com/adafruit/Adafruit-MLX90614-Library)
