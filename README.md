@@ -109,6 +109,7 @@ Para compilar y ejecutar el firmware en la ESP32 debemos seguir los siguientes p
 	* [PubSubClient](https://github.com/knolleary/pubsubclient/)
 	* [Adafruit MLX90614](https://github.com/adafruit/Adafruit-MLX90614-Library)
 	* [Arduino JSON](https://github.com/bblanchon/ArduinoJson)
+	* [Bluetooh Serial](---)
 
 	Las librerías deben colocarse en la carpeta **libraries** del proyecto de **VSCode** o instalarse desde el **Library Manager** de **Arduino IDE**. **Si se usa VSCode**, las librerías ya están incluidas dentro del proyecto subido al repositorio por lo que **no se requiere su instalación**.
 
